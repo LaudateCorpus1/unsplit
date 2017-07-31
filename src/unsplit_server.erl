@@ -251,7 +251,7 @@ run_stitch(#st{table = Tab,
     Keys = mnesia:dirty_all_keys(Tab),
     lists:foldl(
       fun(K, Sx) ->
-              [_] = A = mnesia:read({Tab,K}),  % assert that A is non-empty
+              [_|_] = A = mnesia:read({Tab,K}),  % assert that A is non-empty
               B = get_remote_obj(Remote, Tab, K),
               if A == B ->
                       Sx;
